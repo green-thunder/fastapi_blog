@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block content %}
+  <section class="hero content-section mb-4">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">FastAPI Blog</p>
+        <h1>Minimal systems, maximal signal.</h1>
+        <p class="lead">
+          Field notes for software engineers: tight APIs, fast feedback loops,
+          and UI that stays out of your way.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-brand" href="#latest">Explore Posts</a>
+          <a class="btn btn-outline-secondary" href="#insights">Get Insights</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="stat">
+          <span class="stat-label">Weekly Reads</span>
+          <span class="stat-value">12 min</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Topics</span>
+          <span class="stat-value">FastAPI · Infra · DX</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Community</span>
+          <span class="stat-value">4.2k engineers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="latest" class="section-title mb-3">
+    <h2>Latest Posts</h2>
+    <p class="text-body-secondary mb-0">Fresh work, detailed notes, and a few strong opinions.</p>
+  </div>
+  {% for post in posts %}
+    <article class="content-section py-3 px-4 mb-4 reveal">
+      <div class="d-flex align-items-start gap-4">
+        <img class="rounded-circle article-img flex-shrink-0"
+             src="{{ url_for('static', path='profile_pics/default.jpg') }}"
+             alt="{{ post.author }}'s profile picture"
+             width="64"
+             height="64"
+             loading="lazy">
+        <div class="flex-grow-1">
+          <div class="article-metadata mb-2">
+            <a class="me-2" href="#">{{ post.author }}</a>
+            <small class="text-body-secondary">{{ post.date_posted }}</small>
+          </div>
+          <h2>
+            <a class="article-title" href="#">{{ post.title }}</a>
+          </h2>
+          <p class="article-content">{{ post.content }}</p>
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+
+  <div id="insights" class="content-section py-3 px-4 mb-4 glass-panel">
+    <h3>Insights</h3>
+    <p class="text-body-secondary">
+      We ship weekly breakdowns on performance, DX, and design systems that scale.
+    </p>
+    <div class="d-flex flex-wrap gap-2">
+      <a class="btn btn-outline-primary" href="#">Read the Newsletter</a>
+      <a class="btn btn-outline-secondary" href="#">View Archives</a>
+    </div>
+  </div
+{% endblock content %}
